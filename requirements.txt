@@ -1,0 +1,12 @@
+my_env/
+│
+├── openenv.yaml
+├── inference.py
+├── models.py
+├── client.py
+│
+├── server/
+│   ├── app.py
+│   ├── environment.py
+│   ├── requirements.txt
+│   └── Dockerfile
