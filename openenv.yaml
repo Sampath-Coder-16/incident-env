@@ -1,0 +1,6 @@
+name: incident-env
+
+endpoints:
+  reset: /reset
+  step: /step
+  state: /state
