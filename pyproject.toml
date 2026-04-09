@@ -1,0 +1,10 @@
+[project]
+name = "incident-env"
+version = "0.1.0"
+description = "OpenEnv incident management environment"
+authors = [{name = "Sampath"}]
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "requests"
+]
