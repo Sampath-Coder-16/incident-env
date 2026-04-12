@@ -6,16 +6,17 @@ env = IncidentEnv()
 
 @app.post("/reset")
 def reset():
-    return env.reset()
+    try:
+        return env.reset()
+    except Exception as e:
+        return {"error": str(e)}
 
 @app.post("/step")
 def step(action: dict):
-    return env.step(action)
-
-@app.get("/state")
-def state():
-    return env.state_fn()
-
+    try:
+        return env.step(action)
+    except Exception as e:
+        return {"error": str(e)}
 # ✅ REQUIRED FOR VALIDATOR
 def main():
     import uvicorn
