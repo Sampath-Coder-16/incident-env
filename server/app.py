@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from environment import IncidentEnv
+from server.environment import IncidentEnv  # ✅ CORRECT IMPORT
 
 app = FastAPI()
 env = IncidentEnv()
@@ -17,11 +17,19 @@ def step(action: dict):
         return env.step(action)
     except Exception as e:
         return {"error": str(e)}
-# ✅ REQUIRED FOR VALIDATOR
+
+@app.get("/state")
+def state():
+    try:
+        return env.state_fn()
+    except Exception as e:
+        return {"error": str(e)}
+
+# ✅ REQUIRED FOR OPENENV VALIDATOR
 def main():
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=7860)
+    uvicorn.run("server.app:app", host="0.0.0.0", port=7860)
 
-# ✅ REQUIRED
+# ✅ REQUIRED FOR DIRECT RUN
 if __name__ == "__main__":
     main()
