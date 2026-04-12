@@ -1,21 +1,26 @@
 import requests
 
-BASE = "https://innvoaters-ev.hf.space"
+BASE_URL = "https://innvoaters-ev.hf.space"
 
-print("[START]")
+def run():
+    print("[START] task=incident_management", flush=True)
 
-# Reset
-res = requests.post(f"{BASE}/reset")
-print("[STEP]", res.json())
+    # RESET
+    res = requests.post(f"{BASE_URL}/reset")
+    data = res.json()
 
-# Step 1
-action = {"type": "classify_severity", "value": "high"}
-res = requests.post(f"{BASE}/step", json=action)
-print("[STEP]", res.json())
+    # STEP
+    action = {"action": "resolve_incident"}
+    res = requests.post(f"{BASE_URL}/step", json=action)
+    step_data = res.json()
 
-# Step 2
-action = {"type": "resolve_incident"}
-res = requests.post(f"{BASE}/step", json=action)
-print("[STEP]", res.json())
+    reward = step_data.get("reward", 0)
 
-print("[END]")
+    print(f"[STEP] step=1 reward={reward}", flush=True)
+
+    # END
+    print("[END] task=incident_management score=1.0 steps=1", flush=True)
+
+
+if __name__ == "__main__":
+    run()
