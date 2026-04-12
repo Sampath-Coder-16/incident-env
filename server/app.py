@@ -16,13 +16,11 @@ def step(action: dict):
 def state():
     return env.state_fn()
 
-
-# REQUIRED
+# ✅ REQUIRED FOR VALIDATOR
 def main():
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=7860)
 
-
-# VERY IMPORTANT
+# ✅ REQUIRED
 if __name__ == "__main__":
     main()
