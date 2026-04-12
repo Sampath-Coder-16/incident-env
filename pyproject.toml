@@ -1,10 +1,11 @@
 [project]
 name = "incident-env"
 version = "0.1.0"
-description = "OpenEnv incident management environment"
-authors = [{name = "Sampath"}]
-dependencies = [
-    "fastapi",
-    "uvicorn",
-    "requests"
-]
+requires-python = ">=3.10"
+
+[project.scripts]
+server = "server.app:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
